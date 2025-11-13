@@ -532,12 +532,9 @@ noscript {
     z-index: -1
 }
 
-.dp::after,
-.dp::before {
-    height: 300px;
-    z-index: -2;
-    content: ""
-}
+
+
+
 
 .main {
     width: 100%;
@@ -867,18 +864,6 @@ noscript {
     transform: translateY(-7px) translateX(-7px)
 }
 
-.resume-btn {
-    margin-top: 25px;
-    justify-content: flex-start;
-    width: 45px;
-    height: 45px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, .199);
-    background: linear-gradient(82.3deg, #965de9 10.8%, #6358ee 94.3%);
-    position: relative
-}
 
 .projects-heading-article,
 .projectsHeadingP,
@@ -891,47 +876,17 @@ noscript {
 }
 
 .dp::after,
-.dp::before,
-.text {
-    position: absolute
+.dp::before {
+    position: absolute;
 }
 
-.sign {
-    width: 100%;
-    justify-content: center
-}
 
-.sign svg {
-    width: 17px
-}
 
-.text {
-    right: 0;
-    width: 0%;
-    opacity: 0;
-    font-size: 1em;
-    font-weight: 600;
-    transition-duration: .3s
-}
 
-.resume-btn:hover {
-    width: 130px;
-    border-radius: 40px;
-    transition-duration: .3s
-}
 
-.resume-btn:hover .sign {
-    width: 30%;
-    transition-duration: .3s;
-    padding-left: 20px
-}
 
-.resume-btn:hover .text {
-    opacity: 1;
-    width: 70%;
-    transition-duration: .3s;
-    padding-right: 10px
-}
+
+
 
 .dp,
 .dp::after,
@@ -941,9 +896,7 @@ noscript {
     transition-duration: .5s
 }
 
-.resume-btn:active {
-    transform: translate(2px, 2px)
-}
+
 
 .about-section-container {
     width: 100%;
@@ -2016,4 +1969,116 @@ footer {
         height: fit-content;
         margin-top: 100px;  
     }
+}
+
+/* === ORIGINAL BORDER (restored) === */
+
+
+
+
+
+#pwdHeading {
+  font-size: 3.0rem; /* change this to make it bigger/smaller */
+}
+
+
+/* === NEW CODE TO PASTE IN PLACE === */
+/* LinkedIn pill — keeps your HTML exactly the same */
+.resume-btn{
+  --ln:#0A66C2;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;                 /* ← tighten spacing (change this to 6/10 etc.) */
+  padding:10px 14px;       /* ← controls overall width most */
+  border-radius:999px;
+  background:linear-gradient(180deg, rgba(10,102,194,.16), rgba(10,102,194,.10));
+  border:1px solid rgba(10,102,194,.45);
+  box-shadow:0 6px 16px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.08);
+  color:#fff;
+  text-decoration:none;
+  cursor:pointer;
+  width:max-content;       /* ← shrink to content */
+  transition:box-shadow .18s ease, transform .18s ease, border-color .18s ease;
+}
+
+.resume-btn .sign{
+  width:28px; height:28px; /* a hair smaller */
+  flex:0 0 28px;
+  display:grid; place-items:center;
+  border-radius:8px;
+  background:var(--ln);
+  box-shadow:inset 0 -2px 0 rgba(0,0,0,.15);
+}
+
+.resume-btn .sign svg{
+  width:16px; height:16px;
+  fill:#fff;
+}
+
+
+.resume-btn .text{
+  position:static !important;
+  font-family: system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  font-weight:700;
+  font-size:15px;          /* ← smaller text = narrower pill */
+  letter-spacing:.2px;
+  line-height:1.1;
+  white-space:nowrap;
+}
+
+/* hover + focus micro-interactions */
+.resume-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 24px rgba(0,0,0,.24), inset 0 1px 0 rgba(255,255,255,.1);
+  border-color:rgba(10,102,194,.65);
+}
+.resume-btn:active{ transform:translateY(0); }
+.resume-btn:focus-visible{
+  outline:2px solid #8AB4F8; outline-offset:3px; border-color:#8AB4F8;
+}
+
+
+/* === ABOUT ME (restored pre-LinkedIn state) === */
+.about-section .dp img {
+  margin-top: -24px;
+}
+
+.about-section .dp {
+  position: relative;
+  left: 12px;
+}
+
+:root {
+  --dp-offset-x: 0px;
+  --dp-offset-y: -27px;
+}
+
+.about-section .dp::before,
+.about-section .dp::after {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 105.7%; /* ⬅️ increased from 100% to 115% */
+  transform: translate(var(--dp-offset-x), var(--dp-offset-y));
+  box-sizing: border-box;
+  z-index: -1;
+  transition: transform .5s ease;
+}
+
+.about-section .dp::before {
+  box-shadow: 2px 2px 0 inset #8000ff, -2px -2px 0 inset transparent;
+}
+
+.about-section .dp::after {
+  box-shadow: 2px 2px 0 inset transparent, -2px -2px 0 inset #8000ff;
+}
+
+.about-section .dp:hover::after {
+  transform: translate(calc(var(--dp-offset-x) + 20px), calc(var(--dp-offset-y) + 20px));
+}
+
+.about-section .dp:hover::before {
+  transform: translate(calc(var(--dp-offset-x) - 20px), calc(var(--dp-offset-y) - 20px));
 }
